@@ -18,6 +18,8 @@ module Rails
         end
 
         def parse_options(argv)
+          argv.replace(Shellwords.split(ENV["TESTOPTS"] || ""))
+
           # Perform manual parsing and cleanup since option parser raises on unknown options.
           env_index = argv.index("--environment") || argv.index("-e")
           if env_index
@@ -32,7 +34,7 @@ module Rails
 
         def rake_run(argv = [])
           # Ensure the tests run during the Rake Task action, not when the process exits
-          success = system("rails", "test", *argv, *Shellwords.split(ENV["TESTOPTS"] || ""))
+          success = system("rails", "test", *argv)
           success || exit(false)
         end
 
