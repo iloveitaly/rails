@@ -1,3 +1,13 @@
+*   Treat `nil` values as `""` during multi-parameter attribute assignment
+
+    ```ruby
+    topic = Topic.where.not(last_read: nil).first
+    topic.attributes = { "last_read(1i)" => nil, "last_read(2i)" => nil, "last_read(3i)" => nil }
+    topic.last_read # => nil
+    ```
+
+    *Sean Doyle*
+
 *   Bump the minimum PostgreSQL version to 10.0.
 
     As part of this change, `supports_pgcrypto_uuid?` is deprecated because
