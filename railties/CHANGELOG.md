@@ -9,7 +9,7 @@
 
     Additionally, `.rubocop.yml` is configured to assume frozen string literals
     are enabled, if you decide not to enable frozen string literals for your application,
-    make sureto update the rubocop configuration accordingly.
+    make sure to update the rubocop configuration accordingly.
 
     *Jean Boussier*
 
