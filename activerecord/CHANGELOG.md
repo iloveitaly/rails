@@ -1,3 +1,13 @@
+*   Treat `nil` values as `""` during multi-parameter attribute assignment
+
+    ```ruby
+    topic = Topic.where.not(last_read: nil).first
+    topic.attributes = { "last_read(1i)" => nil, "last_read(2i)" => nil, "last_read(3i)" => nil }
+    topic.last_read # => nil
+    ```
+
+    *Sean Doyle*
+
 *   Include record ID in error when uniqueness validation fails
 
     When a uniqueness validation fails, the `errors.details` hash for the attribute
